@@ -1,11 +1,11 @@
 package example.graphics.demo;
 
-import gann.graphics.Drawable;
-import gann.graphics.Image;
-import gann.graphics.Text;
-import gann.graphics.geom.*;
-import gann.graphics.geom.Rectangle;
-import gann.graphics.ui.AppWindow;
+import org.gannacademy.cdf.graphics.Drawable;
+import org.gannacademy.cdf.graphics.Image;
+import org.gannacademy.cdf.graphics.Text;
+import org.gannacademy.cdf.graphics.geom.*;
+import org.gannacademy.cdf.graphics.geom.Rectangle;
+import org.gannacademy.cdf.graphics.ui.AppWindow;
 
 import java.awt.*;
 import java.util.ArrayList;
