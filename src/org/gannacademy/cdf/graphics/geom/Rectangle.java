@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 /**
- * Draw a rectangle
+ * <p>Draw a rectangle</p>
+ *
+ * <p><img src="doc-files/Rectangle.png" alt="Rectangle diagram"></p>
  *
  * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
  */
@@ -18,9 +20,10 @@ public class Rectangle extends Drawable2D {
    *
    * <p><img src="doc-files/Rectangle.png" alt="Diagram of Rectangle parameters"></p>
    *
-   * <p>It is worth noting that window coordinate system has its origin in the top, left corner of the window, and that
-   * the X-axis increases from left to right, while the Y-axis increases from <i>top to bottom</i>. All coordinates that
-   * are displated are in the first quadrant.</p>
+   * <p>All window coordinates are measured in pixels, with the X-axis increasing from left to right and the Y-axis
+   * increasing from top to bottom. All window coordinates exist in the first quadrant.</p>
+   *
+   * <p><img src="../doc-files/window-coordinates.png" alt="Diagram of window coordinates"></p>
    *
    * @param x            coordinate of origin
    * @param y            coordinate of origin

@@ -8,7 +8,9 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 /**
- * Draw a round rectangle (i.e. a rectangle with round corners)
+ * <p>Draw a round rectangle (i.e. a rectangle with round corners)</p>
+ *
+ * <p><img src="doc-files/RoundRectangle.png" alt="Round rectangle diagram"></p>
  *
  * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
  */
@@ -18,14 +20,15 @@ public class RoundRectangle extends Drawable2D {
    *
    * <p><img src="doc-files/RoundRectangle.png" alt="Diagram of RoundRectangle parameters"></p>
    *
-   * <p>It is worth noting that window coordinate system has its origin in the top, left corner of the window, and that
-   * the X-axis increases from left to right, while the Y-axis increases from <i>top to bottom</i>. All coordinates that
-   * are displated are in the first quadrant.</p>
+   * <p>All window coordinates are measured in pixels, with the X-axis increasing from left to right and the Y-axis
+   * increasing from top to bottom. All window coordinates exist in the first quadrant.</p>
+   *
+   * <p><img src="../doc-files/window-coordinates.png" alt="Diagram of window coordinates"></p>
    *
    * @param x            coordinate of origin
    * @param y            coordinate of origin
    * @param width        in pixels
-   * @param height       in piels
+   * @param height       in pixels
    * @param arcWidth     in pixels, width of the ellipse that defines the round corners
    * @param arcHeight    in pixels, height of the ellipse that defines the round corners
    * @param drawingPanel on which to draw
@@ -39,6 +42,10 @@ public class RoundRectangle extends Drawable2D {
     }
   }
 
+  protected RoundRectangle2D getShapeAsRoundRectangle() {
+    return (RoundRectangle2D) getShape();
+  }
+
   @Override
   public void setShape(Shape shape) throws DrawableException {
     if (shape instanceof RoundRectangle2D) {
@@ -46,5 +53,25 @@ public class RoundRectangle extends Drawable2D {
     } else {
       throw new DrawableException("Attempt to set RoundRectangle's underlying shape to a non-RoundRectangle2D instance");
     }
+  }
+
+  /**
+   * Width of ellipse defining corners
+   *
+   * @return Arc width
+   * @see RoundRectangle#getArcWidth()
+   */
+  public double getArcWidth() {
+    return getShapeAsRoundRectangle().getArcWidth();
+  }
+
+  /**
+   * Height of ellipse defining corners
+   *
+   * @return Arc height
+   * @see RoundRectangle#getArcHeight()
+   */
+  public double getArcHeight() {
+    return getShapeAsRoundRectangle().getArcHeight();
   }
 }

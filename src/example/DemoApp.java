@@ -1,4 +1,4 @@
-package example.graphics.demo;
+package example;
 
 import org.gannacademy.cdf.graphics.Drawable;
 import org.gannacademy.cdf.graphics.Image;
@@ -15,14 +15,15 @@ public class DemoApp extends AppWindow {
 
   public static final double COL_SPACE = 30, COL_WIDTH = 160, ROW_SPACE = 10, ROW_HEIGHT = 120, SPEED = 3;
   public static final long DELAY = 5000;
+  private List<Drawable> components;
+  private List<Double> headings;
+  private long start;
+  private double scale;
+  private boolean scaleIsIncreasing;
 
   public static void main(String[] args) {
     new DemoApp();
   }
-
-  private List<Drawable> components;
-  private List<Double> headings;
-  private long start;
 
   private int columns() {
     return (int) ((getDrawingPanel().getWidth() - COL_SPACE) / (COL_SPACE + COL_WIDTH));
@@ -67,6 +68,9 @@ public class DemoApp extends AppWindow {
     components = new ArrayList<>();
     headings = new ArrayList<>();
 
+    scaleIsIncreasing = true;
+    scale = 1.0;
+
     double rows = (int) (Math.sqrt(types.length));
     int cols = (int) (Math.ceil((double) types.length / rows));
     setSize((int) (COL_SPACE + cols * (COL_WIDTH + COL_SPACE)), (int) (ROW_SPACE + rows * (ROW_HEIGHT + ROW_SPACE)));
@@ -94,7 +98,8 @@ public class DemoApp extends AppWindow {
         components.add(path);
       } else if (types[i] == Text.class) {
         Text text = new Text(" Gann Graphics ", xCoord(i), yCoord(i), getDrawingPanel());
-        text.translate(0, text.getHeight());
+        text.setWidth(COL_WIDTH);
+        text.translate(0, text.getMaxAscent());
         components.add(text);
       } else if (types[i] == Image.class) {
         Image image = new Image("/java-logo.png", xCoord(i), yCoord(i), getDrawingPanel());
@@ -113,17 +118,35 @@ public class DemoApp extends AppWindow {
 
   public void loop() {
     if (System.currentTimeMillis() > start + DELAY) {
+      if (scaleIsIncreasing) {
+        if (scale < 1.5) {
+          scale += 0.1;
+        } else {
+          scaleIsIncreasing = false;
+        }
+      } else {
+        if (scale > 0.5) {
+          scale -= 0.1;
+        } else {
+          scaleIsIncreasing = true;
+        }
+      }
+
       for (int i = 0; i < components.size(); i++) {
         components.get(i).translate(Math.cos(headings.get(i)) * SPEED, Math.sin(headings.get(i)) * SPEED);
+        components.get(i).setWidth(COL_WIDTH * scale);
+        if (!(components.get(i) instanceof Text)) {
+          components.get(i).setHeight(ROW_HEIGHT * scale);
+        }
         if (components.get(i).getX() < 0 - COL_WIDTH) {
-          components.get(i).setOrigin(getDrawingPanel().getWidth(), components.get(i).getY());
+          components.get(i).setLocation(getDrawingPanel().getWidth(), components.get(i).getY());
         } else if (components.get(i).getX() > getDrawingPanel().getWidth()) {
-          components.get(i).setOrigin(0 - COL_WIDTH, components.get(i).getY());
+          components.get(i).setLocation(0 - COL_WIDTH, components.get(i).getY());
         }
         if (components.get(i).getY() < 0 - ROW_HEIGHT) {
-          components.get(i).setOrigin(components.get(i).getX(), getDrawingPanel().getHeight());
+          components.get(i).setLocation(components.get(i).getX(), getDrawingPanel().getHeight());
         } else if (components.get(i).getY() > getDrawingPanel().getHeight()) {
-          components.get(i).setOrigin(components.get(i).getX(), 0 - ROW_HEIGHT);
+          components.get(i).setLocation(components.get(i).getX(), 0 - ROW_HEIGHT);
         }
       }
     }

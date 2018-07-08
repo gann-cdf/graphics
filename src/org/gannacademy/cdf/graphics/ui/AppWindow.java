@@ -98,6 +98,8 @@ public abstract class AppWindow implements Runnable {
    * <p>The origin of the screen coordinates is the top, left corner with the X-axis increasing from left to right and
    * the Y-axis increasing from top to bottom. All onscreen coordinates are in the first quadrant.</p>
    *
+   * <p><img src="../doc-files/window-coordinates.png" alt="Screen coordinates diagram"></p>
+   *
    * @param x in pixels
    * @param y in pixels
    */

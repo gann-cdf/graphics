@@ -1,14 +1,22 @@
 package docs;
 
-import org.gannacademy.cdf.graphics.geom.*;
-import org.gannacademy.cdf.graphics.ui.*;
+import org.gannacademy.cdf.graphics.geom.Ellipse;
+import org.gannacademy.cdf.graphics.geom.Rectangle;
+import org.gannacademy.cdf.graphics.ui.AppWindow;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Build your app as an extension of the AppWindow class (which sets up the window and drawing panel for you)
  */
 public class DrawingApp extends AppWindow {
+
+  /**
+   * Start your app by instantiating it in your main method
+   */
+  public static void main(String[] args) {
+    new DrawingApp();
+  }
 
   /**
    * Override the setup() method to define your drawing
@@ -22,12 +30,5 @@ public class DrawingApp extends AppWindow {
     // draw a red, transparent circle with a thick outline
     Ellipse e = new Ellipse(250, 125, 200, 200, getDrawingPanel());
     e.setFillColor(new Color(255, 100, 100, 200));
-  }
-
-  /**
-   * Start your app by instantiating it in your main method
-   */
-  public static void main(String[] args) {
-    new DrawingApp();
   }
 }

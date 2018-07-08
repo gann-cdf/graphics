@@ -59,7 +59,7 @@ public class DrawingPanel extends JPanel {
    * <p>Construct a drawing panel with custom arguments</p>
    *
    * <p>Of potential interest: while setting a background color that is transparent reveals the light gray color of of
-   * the enclosing {@link JFrame} underneath the drawing panel, it will save as a transparent PNG usinig
+   * the enclosing {@link JFrame} underneath the drawing panel, it will save as a transparent PNG using
    * {@link #saveAs(String)}.</p>
    *
    * @param dimension  in pixels
@@ -69,7 +69,7 @@ public class DrawingPanel extends JPanel {
     super();
     setPreferredSize(dimension);
     setBackground(background);
-    components = new Stack<Drawable>();
+    components = new Stack<>();
   }
 
   /**
@@ -142,6 +142,7 @@ public class DrawingPanel extends JPanel {
    * set any rendering hints or other configuration for the drawing.</p>
    *
    * @param graphics context for drawing instructions
+   * @see Drawable#draw(Graphics2D)
    * @see #preDraw(Graphics2D)
    * @see #paintComponent(Graphics)
    * @see #saveAs(String, String)
