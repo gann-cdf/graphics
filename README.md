@@ -4,7 +4,7 @@ A thin wrapper for AWT/Swing 2D graphics
 
 [Click here for complete documentation](https://gann-cdf.github.io/graphics/)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.gannacademy.cdf/graphics/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.gannacademy.cdf/graphics)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gann-cdf/turtle-logo/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gann-cdf/turtle-logo/?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.gannacademy.cdf/graphics/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.gannacademy.cdf/graphics)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/gann-cdf/graphics/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/gann-cdf/graphics/?branch=master)
 
 ### Design Philosophy
 
