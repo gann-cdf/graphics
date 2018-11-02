@@ -142,7 +142,7 @@
                         <version>3.1.0</version>
                         <configuration>
                             <includes>
-                                <include>**/org/gannacademy/cdf/graphics/*</include>
+                                <include>org/gannacademy/cdf/graphics/**</include>
                             </includes>
                         </configuration>
                     </plugin>
