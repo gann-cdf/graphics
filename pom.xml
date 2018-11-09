@@ -6,7 +6,7 @@
 
     <groupId>org.gannacademy.cdf</groupId>
     <artifactId>graphics</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2</version>
     <name>Gann Graphics</name>
     <description>A thin wrapper for AWT/Swing 2D graphics</description>
     <url>https://github.com/gann-cdf/graphics</url>

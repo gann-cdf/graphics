@@ -279,7 +279,7 @@ public abstract class Drawable {
    * @see Shape#getBounds2D()
    */
   public Rectangle2D getBounds() {
-    return shape.getBounds2D();
+    return getShape().getBounds2D();
   }
 
   /**
@@ -291,7 +291,7 @@ public abstract class Drawable {
    * @see Shape#contains(double, double)
    */
   public boolean contains(double x, double y) {
-    return shape.contains(x, y);
+    return getShape().contains(x, y);
   }
 
   /**
@@ -302,7 +302,7 @@ public abstract class Drawable {
    * @see Shape#contains(Point2D)
    */
   public boolean contains(Point2D point) {
-    return shape.contains(point);
+    return getShape().contains(point);
   }
 
   /**
@@ -316,7 +316,7 @@ public abstract class Drawable {
    * @see Shape#intersects(double, double, double, double)
    */
   public boolean intersects(double x, double y, double width, double height) {
-    return shape.intersects(x, y, width, height);
+    return getShape().intersects(x, y, width, height);
   }
 
   /**
@@ -327,7 +327,7 @@ public abstract class Drawable {
    * @see Shape#intersects(Rectangle2D)
    */
   public boolean intersects(Rectangle2D rectangle) {
-    return shape.intersects(rectangle);
+    return getShape().intersects(rectangle);
   }
 
 
@@ -342,7 +342,7 @@ public abstract class Drawable {
    * @see Shape#contains(double, double, double, double)
    */
   public boolean contains(double x, double y, double width, double height) {
-    return shape.contains(x, y, width, height);
+    return getShape().contains(x, y, width, height);
   }
 
   /**
@@ -353,7 +353,7 @@ public abstract class Drawable {
    * @see Shape#contains(Rectangle2D)
    */
   public boolean contains(Rectangle2D rectangle) {
-    return shape.contains(rectangle);
+    return getShape().contains(rectangle);
   }
 
   /**
@@ -366,7 +366,7 @@ public abstract class Drawable {
    * @see Shape#getPathIterator(AffineTransform)
    */
   public PathIterator getPathIterator(AffineTransform transformation) {
-    return shape.getPathIterator(transformation);
+    return getShape().getPathIterator(transformation);
   }
 
   /**
