@@ -57,7 +57,7 @@ public abstract class AppWindow implements Runnable {
    */
   public AppWindow(String title) {
     frame = new JFrame(title);
-    frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     drawingPanel = new DrawingPanel();
     frame.add(drawingPanel);
     frame.pack();
