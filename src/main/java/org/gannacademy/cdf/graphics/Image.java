@@ -25,6 +25,8 @@ public class Image extends Drawable {
    *
    * <p>Initially, width and height of a new image object match the dimensions of the original image.</p>
    *
+   * <p>Note that image files (as should all files used by your app internally) should be stored in a resources directory in your project. Maven creates this directory by default, but IDEs allow you to mark a subfolder of your project as the resources root. The path to the image file is relative to the root of the resources directory.</p>
+   *
    * <p>All window coordinates are measured in pixels, with the X-axis increasing from left to right and the Y-axis
    * increasing from top to bottom. All window coordinates exist in the first quadrant.</p>
    *
