@@ -4,6 +4,7 @@ import org.gannacademy.cdf.graphics.Text;
 import org.gannacademy.cdf.graphics.geom.Path;
 import org.gannacademy.cdf.graphics.ui.AppWindow;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
@@ -14,8 +15,9 @@ public class RotationExample extends AppWindow implements MouseListener {
     private static final double
             BASE = 50,
             HEIGHT = 100,
-            THETA = Math.PI / 180.0;
-    private Path path;
+            THETA = Math.PI / 180.0,
+            CROSSHAIR_ARM = 20;
+    private Path path, crosshair;
     private double x, y;
     private boolean mouseDown;
     private int button;
@@ -29,12 +31,25 @@ public class RotationExample extends AppWindow implements MouseListener {
         // calculate top point of triangle
         y = (getDrawingPanel().getHeight() - HEIGHT) / 2.0;
 
+        // setup crosshair
+        crosshair = new Path(getDrawingPanel());
+        crosshair.moveTo(CROSSHAIR_ARM, 0);
+        crosshair.lineTo(CROSSHAIR_ARM, CROSSHAIR_ARM * 2);
+        crosshair.moveTo(0, CROSSHAIR_ARM);
+        crosshair.lineTo(CROSSHAIR_ARM * 2, CROSSHAIR_ARM);
+        crosshair.setStrokeColor(Color.RED);
+
         // define the triangle path
         path = new Path(getDrawingPanel());
         path.moveTo(x, y); // move to top point
         path.lineTo(x + BASE / 2.0, y + HEIGHT); // line to bottom-right point
         path.lineTo(x - BASE / 2.0, y + HEIGHT); // line to bottom-left point
         path.lineTo(x, y); // line back to top point
+        path.setStroke(new BasicStroke(2, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
+
+        // align crosshair to center of gravity
+        Point2D center = getCenterOfGravity();
+        crosshair.setLocation(center.getX() - CROSSHAIR_ARM, center.getY() - CROSSHAIR_ARM);
 
         // register to be notified of mouse events (and assume no one is clicking right now)
         mouseDown = false;
@@ -60,6 +75,7 @@ public class RotationExample extends AppWindow implements MouseListener {
 
             // rotate, using any adjustments to theta and axis of rotiation
             path.transform(AffineTransform.getRotateInstance(theta, x, y));
+            crosshair.setLocation(x - CROSSHAIR_ARM, y - CROSSHAIR_ARM);
         }
         sleep(25);
     }
