@@ -230,6 +230,13 @@ public class Path extends Drawable {
     getShapeAsPath().quadTo(ctrlX1, ctrlY1, x2, y2);
   }
 
+    /**
+     * <p>Close the path by drawing a straight line back to the starting point</p>
+     */
+    public void closePath() {
+        getShapeAsPath().closePath();
+    }
+
   /**
    * <p>Transform the path</p>
    *
