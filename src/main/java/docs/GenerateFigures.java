@@ -3,8 +3,8 @@ package docs;
 import org.gannacademy.cdf.graphics.Drawable;
 import org.gannacademy.cdf.graphics.Image;
 import org.gannacademy.cdf.graphics.Text;
-import org.gannacademy.cdf.graphics.geom.*;
 import org.gannacademy.cdf.graphics.geom.Rectangle;
+import org.gannacademy.cdf.graphics.geom.*;
 import org.gannacademy.cdf.graphics.ui.AppWindow;
 
 import java.awt.*;
@@ -931,8 +931,8 @@ public class GenerateFigures extends AppWindow {
                       ctrlHandle2.getY2() + cy2 * scale,
                       getDrawingPanel()
               );
-      components.put("interpolation" + (int) (2 * i - 1), line1);
-      components.put("interpolation" + (int) (2 * i), line2);
+      components.put("interpolation" + (2 * i - 1), line1);
+      components.put("interpolation" + (2 * i), line2);
       line1.setStrokeColor(Color.getHSBColor((float) scale, 1, 1));
       line2.setStrokeColor(line1.getStrokeColor());
     }
@@ -952,8 +952,8 @@ public class GenerateFigures extends AppWindow {
     for (int i = 1; i < interpolations; i++) {
       double scale = (double) i / interpolations;
       Line
-              line1 = (Line) components.get("interpolation" + (int) (2 * i - 1)),
-              line2 = (Line) components.get("interpolation" + (int) (2 * i)),
+              line1 = (Line) components.get("interpolation" + (2 * i - 1)),
+              line2 = (Line) components.get("interpolation" + (2 * i)),
               line3 = new Line(
                       line1.getX1() + (line1.getX2() - line1.getX1()) * scale,
                       line1.getY1() + (line1.getY2() - line1.getY1()) * scale,
@@ -961,7 +961,7 @@ public class GenerateFigures extends AppWindow {
                       line2.getY1() + (line2.getY2() - line2.getY1()) * scale,
                       getDrawingPanel()
               );
-      components.put("interpolation" + (int) (2 * i - 1) + "-" + 2 * i, line3);
+      components.put("interpolation" + (2 * i - 1) + "-" + 2 * i, line3);
 
       Ellipse ellipse = new Ellipse(
               line3.getX1() + (line3.getX2() - line3.getX1()) * scale - POINT_DIAMETER / 2,
@@ -1089,6 +1089,55 @@ public class GenerateFigures extends AppWindow {
     bottomEdge.setStrokeColor(heightLabel1.getStrokeColor());
   }
 
+  private void figurePathTranslate() {
+    figurePathTranslate(true);
+  }
+
+  /**
+   * TODO Diagram
+   *
+   * @param isStandAlone
+   */
+  private void figurePathTranslate(boolean isStandAlone) {
+    getDrawingPanel().clear();
+    components.clear();
+    components.put("TODO", new Text("TODO Diagram", 1, 20, getDrawingPanel()));
+    if (isStandAlone) {
+    }
+
+    saveFigure("geom", "Path-translate");
+  }
+
+  /**
+   * TODO Diagram
+   */
+  private void figurePathScale() {
+    getDrawingPanel().clear();
+    components.clear();
+    figurePathTranslate(false);
+    saveFigure("geom", "Path-scale");
+  }
+
+  /**
+   * TODO Diagram
+   */
+  private void figurePathRotate() {
+    getDrawingPanel().clear();
+    components.clear();
+    figurePathTranslate(false);
+    saveFigure("geom", "Path-rotate");
+  }
+
+  /**
+   * TODO Diagram
+   */
+  private void figurePathShear() {
+    getDrawingPanel().clear();
+    components.clear();
+    figurePathTranslate(false);
+    saveFigure("geom", "Path-shear");
+  }
+
   private void resetComponentsForPaths() {
     Text
             pt1Label = new Text("Point 1", 0, 0, getDrawingPanel()),
@@ -1205,6 +1254,10 @@ public class GenerateFigures extends AppWindow {
             this::figureLine,
             this::figureCubicCurve,
             this::figurePath,
+            this::figurePathTranslate,
+            this::figurePathScale,
+            this::figurePathRotate,
+            this::figurePathShear,
             this::figureImage,
             this::figureText
     };
