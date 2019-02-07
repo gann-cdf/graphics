@@ -96,10 +96,12 @@ abstract public class Drawable2D extends Drawable {
      *
      * <p>{@code Drawable2D} shapes are aligned to the rectangular grid of the cartesian coordinate system: a rectangle
      * always has sides aligned with the X- and Y-axes of the coordinate system. This means that transformations other
-     * than translation and rotation cannot be performed on {@code Drawable2D} shapes, as that would shift them out of
-     * alignment with the axes. However, this method converts the shape into a Path, which can be transformed.</p>
+     * than translation and scale cannot be performed on {@code Drawable2D} shapes, as that would shift them out of
+     * alignment with the axes. However, this method converts the shape into a Path, which <i>can</i> be
+     * transformed.</p>
      *
-     * <p>Note that the path returned by this method is a new object, separate from the original {@code Drawable2D} shape.</p>
+     * <p>Note that the path returned by this method is a new object, separate from the original {@code Drawable2D}
+     * shape.</p>
      *
      * @return Path equivalent to the 2D shape
      */

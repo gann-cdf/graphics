@@ -3,15 +3,15 @@ package example;
 import org.gannacademy.cdf.graphics.Drawable;
 import org.gannacademy.cdf.graphics.Image;
 import org.gannacademy.cdf.graphics.Text;
-import org.gannacademy.cdf.graphics.geom.*;
 import org.gannacademy.cdf.graphics.geom.Rectangle;
+import org.gannacademy.cdf.graphics.geom.*;
 import org.gannacademy.cdf.graphics.ui.AppWindow;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DemoApp extends AppWindow {
+public class GeometryDemo extends AppWindow {
 
   public static final double COL_SPACE = 30, COL_WIDTH = 160, ROW_SPACE = 10, ROW_HEIGHT = 120, SPEED = 3;
   public static final long DELAY = 5000;
@@ -22,7 +22,7 @@ public class DemoApp extends AppWindow {
   private boolean scaleIsIncreasing;
 
   public static void main(String[] args) {
-    new DemoApp();
+    new GeometryDemo();
   }
 
   private int columns() {
