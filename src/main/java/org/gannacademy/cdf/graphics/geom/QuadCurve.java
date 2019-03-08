@@ -42,6 +42,7 @@ public class QuadCurve extends Drawable {
       setShape(new QuadCurve2D.Double(x1, y1, controlX, controlY, x2, y2));
       setDrawingPanel(drawingPanel);
     } catch (DrawableException e) {
+        System.err.println(e.getMessage());
       e.printStackTrace();
     }
   }

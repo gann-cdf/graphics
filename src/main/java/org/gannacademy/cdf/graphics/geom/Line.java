@@ -37,6 +37,7 @@ public class Line extends Drawable {
       setShape(new Line2D.Double(x1, y1, x2, y2));
       setDrawingPanel(drawingPanel);
     } catch (DrawableException e) {
+        System.err.println(e.getMessage());
       e.printStackTrace();
     }
   }

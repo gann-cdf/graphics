@@ -40,6 +40,7 @@ public class Arc extends Drawable2D {
             setShape(new Arc2D.Double(x, y, width, height, start, extent, Arc2D.PIE));
             setDrawingPanel(drawingPanel);
         } catch (DrawableException e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
     }

@@ -16,7 +16,7 @@ import java.awt.geom.Rectangle2D;
  *
  * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
  */
-public abstract class Drawable {
+public abstract class Drawable implements AutoCloseable {
   /**
    * A transparent color constant, to hide either stroke or fill
    */
@@ -372,22 +372,11 @@ public abstract class Drawable {
   /**
    * Perform necessary cleanup before garbage collection
    */
+  @Override
   public void close() {
     if (drawingPanel != null) {
       drawingPanel.remove(this);
       drawingPanel = null;
-    }
-  }
-
-  /**
-   * Called automatically by garbage collector when no remaining references to the object are detected
-   *
-   * @see Object#finalize()
-   */
-  @Override
-  public void finalize() {
-    if (drawingPanel != null) {
-      close();
     }
   }
 }

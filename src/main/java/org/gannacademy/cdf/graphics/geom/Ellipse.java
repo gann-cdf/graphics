@@ -38,6 +38,7 @@ public class Ellipse extends Drawable2D {
       setShape(new Ellipse2D.Double(x, y, width, height));
       setDrawingPanel(drawingPanel);
     } catch (DrawableException e) {
+        System.err.println(e.getMessage());
       e.printStackTrace();
     }
   }

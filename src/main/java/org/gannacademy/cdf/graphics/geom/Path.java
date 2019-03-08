@@ -66,6 +66,7 @@ public class Path extends Drawable {
             setShape(new Path2D.Double());
             setDrawingPanel(drawingPanel);
         } catch (DrawableException e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
     }

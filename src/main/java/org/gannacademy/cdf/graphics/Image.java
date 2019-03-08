@@ -44,6 +44,7 @@ public class Image extends Drawable {
       setY(y);
       setDrawingPanel(drawingPanel);
     } catch (IOException e) {
+        System.err.println(e.getMessage());
       e.printStackTrace();
     }
   }

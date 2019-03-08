@@ -91,6 +91,7 @@ public class CubicCurve extends Drawable {
       setShape(new CubicCurve2D.Double(x1, y1, ctrlX1, ctrlY1, ctrlX2, ctrlY2, x2, y2));
       setDrawingPanel(drawingPanel);
     } catch (DrawableException e) {
+        System.err.println(e.getMessage());
       e.printStackTrace();
     }
   }

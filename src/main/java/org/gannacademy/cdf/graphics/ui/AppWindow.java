@@ -53,7 +53,7 @@ public abstract class AppWindow implements Runnable {
     /**
      * Construct a new {@link DrawingPanel} in a window with a custom name
      *
-     * @param title
+     * @param title The title of the window (shown in the draggable titlebar)
      */
     public AppWindow(String title) {
         this(title, false);

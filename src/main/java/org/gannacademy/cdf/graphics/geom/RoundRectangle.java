@@ -38,6 +38,7 @@ public class RoundRectangle extends Drawable2D {
             setShape(new RoundRectangle2D.Double(x, y, width, height, arcWidth, arcHeight));
             setDrawingPanel(drawingPanel);
         } catch (DrawableException e) {
+            System.err.println(e.getMessage());
             e.printStackTrace();
         }
     }
