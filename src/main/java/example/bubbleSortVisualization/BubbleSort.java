@@ -10,7 +10,7 @@ public class BubbleSort extends VisualSort {
      * @param drawingPanel The DrawingPanel on which to display the sort
      */
     public BubbleSort(DrawingPanel drawingPanel) {
-        super(drawingPanel);
+        super(1000, drawingPanel);
     }
 
     /**
@@ -22,7 +22,7 @@ public class BubbleSort extends VisualSort {
                 if (list[finger] > list[finger + 1]) {
                     swap(finger, finger + 1);
                 }
-                sleep(20); // ideally this delay is a multiple of the animation frame delay
+                sleep(2); // ideally this delay is a multiple of the animation frame delay
             }
         }
     }

@@ -277,12 +277,12 @@ public abstract class VisualSort implements Runnable {
      */
     public synchronized void update() {
         double
-                width = Math.max(1, drawingPanel.getWidth() / list.length - 1),
-                height = Math.max(1, (drawingPanel.getHeight() - 1) / list.length - 1);
+                width = (double) (drawingPanel.getWidth() - 1) / (double) list.length,
+                height = (double) (drawingPanel.getHeight() - 2) / (double) list.length;
         for (int i = 0; i < list.length; i++) {
-            visuals[i].setLocation(i * (width + 1) + 1, drawingPanel.getHeight() - 1 - list[i] * (height + 1));
-            visuals[i].setWidth(width);
-            visuals[i].setHeight(list[i] * (height + 1));
+            visuals[i].setLocation(i * width + 1, drawingPanel.getHeight() - 1 - list[i] * height);
+            visuals[i].setWidth(Math.max(width - 1, width * 0.5));
+            visuals[i].setHeight(list[i] * height);
             visuals[i].setFillColor(elementColor);
         }
         if (left != INVALID) {

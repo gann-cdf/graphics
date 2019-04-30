@@ -23,7 +23,7 @@ public class Visualizer extends AppWindow implements MouseListener {
     @Override
     protected void loop() {
         bubbleSort.update();
-        sleep(10);
+        sleep(1);
     }
 
     public static void main(String[] args) {
