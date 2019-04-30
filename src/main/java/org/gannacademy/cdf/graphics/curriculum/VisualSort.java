@@ -285,14 +285,14 @@ public abstract class VisualSort implements Runnable {
             visuals[i].setHeight(list[i] * height);
             visuals[i].setFillColor(elementColor);
         }
-        if (left != INVALID) {
+        if (left >= 0 && left < list.length) {
             visuals[left].setFillColor(swapColor);
         }
-        if (right != INVALID) {
+        if (right >= 0 && right < list.length) {
             visuals[right].setFillColor(swapColor);
         }
         resetSwapVisual();
-        if (finger != INVALID) {
+        if (finger >= 0 && finger < list.length) {
             visuals[finger].setFillColor(fingerColor);
         }
     }
