@@ -82,4 +82,28 @@ public class Arc extends Drawable2D {
     public double getAngleExtent() {
         return getShapeAsArc().getAngleExtent();
     }
+
+    public void setAngleStart(double start) {
+        getShapeAsArc().setAngleStart(start);
+    }
+
+    public void setAngleExtent(double extent) {
+        getShapeAsArc().setAngleExtent(extent);
+    }
+
+    public double getHeight() {
+        return getShapeAsArc().getHeight();
+    }
+
+    public double getWidth() {
+        return getShapeAsArc().getWidth();
+    }
+
+    public double getX() {
+        return getShapeAsArc().getX();
+    }
+
+    public double getY() {
+        return getShapeAsArc().getY();
+    }
 }
