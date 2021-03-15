@@ -132,14 +132,14 @@ public class Text extends Drawable {
     this.font = font;
   }
 
-  public Rectangle getBounds() {
+  public Rectangle2D getBounds() {
     return getBounds(getDrawingPanel());
   }
 
-  private Rectangle getBounds(DrawingPanel drawingPanel) {
+  private Rectangle2D getBounds(DrawingPanel drawingPanel) {
     return drawingPanel.getGraphics().getFontMetrics(getFont())
             .getStringBounds(getText(), getDrawingPanel().getGraphics())
-            .getBounds();
+            .getBounds2D();
   }
 
   /**

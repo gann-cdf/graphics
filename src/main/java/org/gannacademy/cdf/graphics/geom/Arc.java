@@ -6,6 +6,7 @@ import org.gannacademy.cdf.graphics.ui.DrawingPanel;
 
 import java.awt.*;
 import java.awt.geom.Arc2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * <p>Draw an arc as a section of an ellipse</p>
@@ -83,27 +84,48 @@ public class Arc extends Drawable2D {
         return getShapeAsArc().getAngleExtent();
     }
 
+    /**
+     * Set start angle of arc
+     * 
+     * @param start Angle measured counter-clockwise in degrees from 0&deg; (East) of start of ellipse segment
+     * @see Arc2D#setAngleStart(double)
+     */
     public void setAngleStart(double start) {
         getShapeAsArc().setAngleStart(start);
     }
 
+    /**
+     * Set extent angle of arc
+     * 
+     * @param extent Angle measured counter-clockwise in degrees from start angle determining extent of arc
+     * @see Arc2D#setAngleExtent(double)
+     */
     public void setAngleExtent(double extent) {
         getShapeAsArc().setAngleExtent(extent);
     }
 
+    @Override
     public double getHeight() {
         return getShapeAsArc().getHeight();
     }
 
+    @Override
     public double getWidth() {
         return getShapeAsArc().getWidth();
     }
 
+    @Override
     public double getX() {
         return getShapeAsArc().getX();
     }
 
+    @Override
     public double getY() {
         return getShapeAsArc().getY();
+    }
+
+    @Override
+    public Rectangle2D getBounds() {
+        return getShapeAsArc().getBounds();
     }
 }
