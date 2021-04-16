@@ -58,7 +58,7 @@ import java.awt.geom.Point2D;
  * <p>Refer to the <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve">Wikipedia Bézier curve article</a> for some
  * lovely animated GIFs of this process.</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class CubicCurve extends Drawable {
   /**

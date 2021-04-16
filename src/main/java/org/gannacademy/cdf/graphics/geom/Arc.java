@@ -15,7 +15,7 @@ import java.awt.geom.Rectangle2D;
  *
  * <p>Arcs are sections of ellipses, inscribed within their rectangular bounding box.</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class Arc extends Drawable2D {
     /**

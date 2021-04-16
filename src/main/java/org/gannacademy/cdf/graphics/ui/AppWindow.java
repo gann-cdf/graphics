@@ -34,7 +34,7 @@ import java.awt.*;
  * called repeatedly (inside a loop!) while {@code done()} returns {@code false} &mdash; when {@code done()} returns
  * {@code true}, the control loop ends (although the application will continue running until the window is closed).</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public abstract class AppWindow extends JFrame {
     public static final String DEFAULT_TITLE = "Gann Graphics App";
@@ -96,7 +96,7 @@ public abstract class AppWindow extends JFrame {
             }
         });
     }
-    
+
     private void repaintOnEDT() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -135,11 +135,12 @@ public abstract class AppWindow extends JFrame {
 
         @Override
         protected Void doInBackground() throws Exception {
-            while (!window.done()) {
+            //noinspection InfiniteLoopStatement
+            while (true) {
                 window.repaintOnEDT();
+                //noinspection BusyWait
                 Thread.sleep(delay);
             }
-            return null;
         }
     }
     /**

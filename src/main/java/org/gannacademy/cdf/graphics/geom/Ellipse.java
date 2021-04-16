@@ -14,7 +14,7 @@ import java.awt.geom.Ellipse2D;
  *
  * <p>Ellipses are drawn inscribed within their rectangular bounding box.</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class Ellipse extends Drawable2D {
   /**

@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Render an image file
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class Image extends Drawable {
   private BufferedImage original, active;

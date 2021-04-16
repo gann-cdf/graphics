@@ -17,7 +17,7 @@ import java.util.Stack;
  * contained by an {@code AppWindow} object &mdash; an {@code AppWindow} has-a {@code DrawingPanel}, in the parlance of
  * the Advanced Placement exam, and a {@code DrawingPanel} has-many {@code Drawable} components.</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class DrawingPanel extends JPanel {
 

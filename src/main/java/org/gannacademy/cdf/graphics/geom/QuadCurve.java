@@ -16,7 +16,7 @@ import java.awt.geom.QuadCurve2D;
  * <p>Refer to {@link CubicCurve} for a full explanation of the Bézier interpolation process (which explains what the
  * control point does).</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class QuadCurve extends Drawable {
   /**

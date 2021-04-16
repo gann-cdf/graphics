@@ -10,7 +10,7 @@ import java.awt.geom.Rectangle2D;
  *
  * <p><img src="doc-files/Text.png" alt="Diagram of Text parameters"></p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class Text extends Drawable {
   private double x, y;

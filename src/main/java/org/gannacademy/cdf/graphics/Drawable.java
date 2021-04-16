@@ -14,7 +14,7 @@ import java.awt.geom.Rectangle2D;
  * <p>This class defines most of the core operations that define what it means to be drawable (that the component is
  * associated with a drawing panel, has a stroke and/or fill color, perhaps a particular stroke style).</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public abstract class Drawable implements AutoCloseable {
   /**

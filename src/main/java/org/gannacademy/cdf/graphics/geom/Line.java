@@ -13,7 +13,7 @@ import java.awt.geom.Point2D;
  *
  * <p><img src="doc-files/Line.png" alt="Line diagram"></p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class Line extends Drawable {
   /**

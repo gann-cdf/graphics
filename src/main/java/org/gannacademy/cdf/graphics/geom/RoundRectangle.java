@@ -12,7 +12,7 @@ import java.awt.geom.RoundRectangle2D;
  *
  * <p><img src="doc-files/RoundRectangle.png" alt="Round rectangle diagram"></p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class RoundRectangle extends Drawable2D {
     /**

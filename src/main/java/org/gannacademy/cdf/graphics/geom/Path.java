@@ -53,7 +53,7 @@ import java.awt.geom.Path2D;
  * filling, stroking, or transforming paths. More detailed explanations of how the Bézier curve segments are computed
  * can be found in {@link QuadCurve} and {@link CubicCurve}.</p>
  *
- * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
+ * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public class Path extends Drawable {
     /**
