@@ -36,10 +36,9 @@ import java.awt.*;
  *
  * @author <a href="https://github.com/gann-cdf/graphics/issues">Seth Battis</a>
  */
-public abstract class AppWindow implements Runnable {
+public abstract class AppWindow extends JFrame {
     public static final String DEFAULT_TITLE = "Gann Graphics App";
 
-    private JFrame frame;
     private DrawingPanel drawingPanel;
     private boolean threadStarted = false;
 
@@ -68,23 +67,67 @@ public abstract class AppWindow implements Runnable {
      * @param isFullScreen whether or not the window is framed or full screen
      */
     public AppWindow(String title, boolean isFullScreen) {
-        frame = new JFrame(title);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        drawingPanel = new DrawingPanel();
-        frame.add(drawingPanel);
-        if (isFullScreen) {
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            frame.setUndecorated(true);
-            DisplayMode display = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0].getDisplayMode();
-            setSize(display.getWidth(), display.getHeight());
-        }
-        frame.pack();
-        setup();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        run();
+        super(title);
+        AppWindow self = this;
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                drawingPanel = new DrawingPanel();
+                add(drawingPanel);
+                if (isFullScreen) {
+                    setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    setUndecorated(true);
+                    DisplayMode display = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0].getDisplayMode();
+                    setSize(display.getWidth(), display.getHeight());
+                }
+                pack();
+                setup();
+                setLocationRelativeTo(null);
+                setVisible(true);
+                (new Repainter(self)).execute();
+                (new Animator(self)).execute();
+            }
+        });
     }
 
+    private static class Animator extends SwingWorker<Object,Object> {
+
+        AppWindow window;
+
+        Animator(AppWindow window) {
+            this.window = window;
+        }
+
+        @Override
+        protected Object doInBackground() throws Exception {
+            while(!window.done()) {
+                window.loop();
+            }
+            return null;
+        }
+    }
+
+    private static class Repainter extends SwingWorker<Object,Object> {
+        AppWindow window;
+
+        Repainter(AppWindow window) {
+            this.window = window;
+        }
+
+        @Override
+        protected Object doInBackground() throws Exception {
+            while (true) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        window.repaint();
+                    }
+                });
+                Thread.sleep(10);
+            }
+        }
+    }
     /**
      * Set the size of the window
      *
@@ -93,37 +136,8 @@ public abstract class AppWindow implements Runnable {
      */
     public void setSize(int width, int height) {
         drawingPanel.setPreferredSize(new Dimension(width, height));
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.repaint();
-    }
-
-    /**
-     * <p>Set the window location relative to another window or window component</p>
-     *
-     * <p>If this method is called with a {@code null} argument, the window will be centered on the screen.</p>
-     *
-     * @param component to set location relative to
-     */
-    public void setLocationRelativeTo(Component component) {
-        frame.setLocationRelativeTo(component);
-        frame.repaint();
-    }
-
-    /**
-     * <p>Set the window location on the screen</p>
-     *
-     * <p>The origin of the screen coordinates is the top, left corner with the X-axis increasing from left to right and
-     * the Y-axis increasing from top to bottom. All onscreen coordinates are in the first quadrant.</p>
-     *
-     * <p><img src="../doc-files/window-coordinates.png" alt="Screen coordinates diagram"></p>
-     *
-     * @param x in pixels
-     * @param y in pixels
-     */
-    public void setLocation(int x, int y) {
-        frame.setLocation(x, y);
-        frame.repaint();
+        pack();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -136,25 +150,6 @@ public abstract class AppWindow implements Runnable {
             Thread.sleep(delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
-    }
-
-    /**
-     * <p>Thread execution</p>
-     *
-     * <p>This method is the control loop and should not be called manually (although doing so should have no impact).</p>
-     *
-     * @see #loop()
-     * @see #done()
-     */
-    @Override
-    public void run() {
-        if (!threadStarted) {
-            threadStarted = true;
-            while (!done()) {
-                loop();
-                drawingPanel.repaint();
-            }
         }
     }
 
