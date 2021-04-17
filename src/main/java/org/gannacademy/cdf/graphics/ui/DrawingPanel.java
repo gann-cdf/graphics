@@ -41,7 +41,8 @@ public class DrawingPanel extends JPanel {
    */
   public static final String DEFAULT_IMAGE_FORMAT = "PNG";
 
-  /*
+  /**
+   * All drawable components present on drawing panel
    * TODO Not 100% confident that the stack is the right structure here -- it would be nice to let someone reorder the
    * components to effectively set their Z-depth (which could technically be done with a stack, but is not really in the
    * spirit of it all)

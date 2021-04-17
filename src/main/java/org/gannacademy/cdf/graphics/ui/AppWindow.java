@@ -2,6 +2,8 @@ package org.gannacademy.cdf.graphics.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * <p>Extendable window controller for {@link DrawingPanel} objects</p>
@@ -37,12 +39,31 @@ import java.awt.*;
  * @author <a href="https://github.com/gann-cdf/graphics/issues" target="_blank">Seth Battis</a>
  */
 public abstract class AppWindow extends JFrame {
+
+    /**
+     * Default title of the app window
+     */
     public static final String DEFAULT_TITLE = "Gann Graphics App";
+
+    /**
+     * Defaults to windowed app
+     */
     public static final boolean DEFAULT_FULLSCREEN = false;
+
+    /**
+     * Defaults to 10ms repaint delay
+     */
     public static final long DEFAULT_REPAINT_DELAY = 10;
 
+    /**
+     * Drawing panel on which {@link org.gannacademy.cdf.graphics.Drawable} objects are painted
+     */
     private DrawingPanel drawingPanel;
-    private boolean threadStarted = false;
+
+    /**
+     * Has the window been closed?
+     */
+    private boolean closed = false;
 
     /**
      * Construct a new {@link DrawingPanel} in a window with the default title
@@ -60,6 +81,11 @@ public abstract class AppWindow extends JFrame {
         this(title, DEFAULT_FULLSCREEN, DEFAULT_REPAINT_DELAY);
     }
 
+    /**
+     * Construct a new {@link DrawingPanel} in a window (or full screen) with a custom name
+     * @param title The title of the app (shown in app lists)
+     * @param isFullScreen whether or not the window is framed or full screen
+     */
     public AppWindow(String title, boolean isFullScreen) {
         this(title, isFullScreen, DEFAULT_REPAINT_DELAY);
     }
@@ -71,6 +97,7 @@ public abstract class AppWindow extends JFrame {
      *
      * @param title        for the window
      * @param isFullScreen whether or not the window is framed or full screen
+     * @param repaintDelay delay between repaints in milliseconds
      */
     public AppWindow(String title, boolean isFullScreen, long repaintDelay) {
         super(title);
@@ -78,7 +105,7 @@ public abstract class AppWindow extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                 drawingPanel = new DrawingPanel();
                 add(drawingPanel);
                 if (isFullScreen) {
@@ -88,6 +115,12 @@ public abstract class AppWindow extends JFrame {
                     setSize(display.getWidth(), display.getHeight());
                 }
                 pack();
+                addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        closed = true;
+                    }
+                });
                 setup();
                 setLocationRelativeTo(null);
                 setVisible(true);
@@ -95,6 +128,13 @@ public abstract class AppWindow extends JFrame {
                 (new Animator(self)).execute();
             }
         });
+    }
+
+    /**
+     * Close the AppWindow programmatically
+     */
+    public void close() {
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
     private void repaintOnEDT() {
@@ -106,7 +146,7 @@ public abstract class AppWindow extends JFrame {
         });
     }
 
-    private static class Animator extends SwingWorker<Void,Void> {
+    private static class Animator extends SwingWorker<Void, Void> {
 
         AppWindow window;
 
@@ -116,7 +156,7 @@ public abstract class AppWindow extends JFrame {
 
         @Override
         protected Void doInBackground() throws Exception {
-            while(!window.done()) {
+            while (!window.closed && !window.done()) {
                 window.loop();
                 window.repaintOnEDT();
             }
@@ -124,7 +164,7 @@ public abstract class AppWindow extends JFrame {
         }
     }
 
-    private static class Repainter extends SwingWorker<Void,Void> {
+    private static class Repainter extends SwingWorker<Void, Void> {
         AppWindow window;
         long delay;
 
@@ -135,14 +175,19 @@ public abstract class AppWindow extends JFrame {
 
         @Override
         protected Void doInBackground() throws Exception {
-            //noinspection InfiniteLoopStatement
-            while (true) {
+            while (!window.closed) {
                 window.repaintOnEDT();
-                //noinspection BusyWait
                 Thread.sleep(delay);
             }
+            return null;
+        }
+
+        @Override
+        protected void done() {
+            window.dispose();
         }
     }
+
     /**
      * Set the size of the window
      *

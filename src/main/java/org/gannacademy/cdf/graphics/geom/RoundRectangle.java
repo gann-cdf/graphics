@@ -5,6 +5,7 @@ import org.gannacademy.cdf.graphics.DrawableException;
 import org.gannacademy.cdf.graphics.ui.DrawingPanel;
 
 import java.awt.*;
+import java.awt.geom.RectangularShape;
 import java.awt.geom.RoundRectangle2D;
 
 /**
@@ -43,6 +44,11 @@ public class RoundRectangle extends Drawable2D {
         }
     }
 
+    /**
+     * Underlying {@link RoundRectangle2D} geometry
+     *
+     * @return Underlying {@link RoundRectangle2D} geometry
+     */
     protected RoundRectangle2D getShapeAsRoundRectangle() {
         return (RoundRectangle2D) getShape();
     }

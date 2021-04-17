@@ -10,6 +10,11 @@
     <name>Gann Graphics</name>
     <description>A thin wrapper for AWT/Swing 2D graphics</description>
     <url>https://github.com/gann-cdf/graphics</url>
+    <inceptionYear>2018</inceptionYear>
+    <organization>
+        <name>Seth Battis</name>
+        <url>https://github.com/battis</url>
+    </organization>
 
     <licenses>
         <license>
@@ -38,24 +43,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
-                <configuration>
-                    <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <releaseProfiles>release</releaseProfiles>
-                    <goals>deploy</goals>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.1.1</version>
-            </plugin>
-
-            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.6.8</version>
@@ -63,7 +50,6 @@
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://oss.sonatype.org</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                    <!--<skipStagingRepositoryClose>true</skipStagingRepositoryClose>-->
                 </configuration>
             </plugin>
         </plugins>
@@ -88,34 +74,31 @@
                         </executions>
                     </plugin>
 
-                    <!--<plugin>
+                    <plugin>
+                        <!-- TODO currently needs to be run manually, can't figure out which phase to bind it to (has to be after compile and after resources are copied to target, but before javadoc is run -->
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.6.0</version>
+                        <version>3.0.0</version>
                         <executions>
                             <execution>
-                                <id>GenerateFigures</id>
-                                <phase>initialize</phase>
+                                <id>generate-figures</id>
                                 <goals>
                                     <goal>java</goal>
                                 </goals>
                             </execution>
                         </executions>
                         <configuration>
-                            <mainClass>docs.GenerateFigures</mainClass>
+                            <mainClass>org.gannacademy.cdf.graphics.javadoc.GenerateFigures</mainClass>
                         </configuration>
-                    </plugin>-->
+                    </plugin>
 
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>3.2.0</version>
                         <configuration>
-                            <doctitle>${project.name} ${project.version}</doctitle>
-                            <author>true</author>
-                            <detectJavaApiLink>true</detectJavaApiLink>
-                            <excludePackageNames>docs,example,projectstems.*</excludePackageNames>
-                            <outputDirectory>docs</outputDirectory>
+                            <source>${maven.compiler.source}</source>
+                            <excludePackageNames>org.gannacademy.cdf.graphics.curriculum:org.gannacademy.cdf.graphics.curriculum.*:org.gannacademy.cdf.graphics.example:org.gannacademy.cdf.graphics.example.*:org.gannacademy.cdf.graphics.javadoc</excludePackageNames>
                         </configuration>
                         <executions>
                             <execution>
@@ -161,8 +144,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <scm.url>scm:git:https://github.com/gann-cdf/graphics.git</scm.url>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
     <distributionManagement>
