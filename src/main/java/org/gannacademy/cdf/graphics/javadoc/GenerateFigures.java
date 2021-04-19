@@ -74,21 +74,11 @@ public class GenerateFigures extends AppWindow {
         double width = 0, height = 0;
         for (Map.Entry<String, Drawable> entry : components.entrySet()) {
             Drawable component = entry.getValue();
+            width = Math.max(width, component.getX() + component.getWidth());
             if (component instanceof Text) {
-                Text t = (Text) component;
-                if (t.getX() + t.getWidth() > width) {
-                    width = t.getX() + t.getWidth();
-                }
-                if (t.getY() + t.getMaxDescent() > height) {
-                    height = t.getY() + t.getMaxDescent();
-                }
+                height = Math.max(height, component.getY() + ((Text) component).getMaxDescent());
             } else {
-                if (component.getX() + component.getWidth() > width) {
-                    width = component.getX() + component.getWidth();
-                }
-                if (component.getY() + component.getHeight() > height) {
-                    height = component.getY() + component.getHeight();
-                }
+                height = Math.max(height, component.getY() + component.getHeight());
             }
         }
         saveFigure(subpackage, name, width + 1, height + 1);
@@ -994,15 +984,9 @@ public class GenerateFigures extends AppWindow {
     }
 
     private void figureBezierCubicCurveFig5() {
-        figureBezierCubicCurveFig5(true, BEZIER_CURVE_INTERPOLATIONS);
-    }
-
-    private void figureBezierCubicCurveFig5(boolean isStandAlone, int interpolations) {
-        figureBezierCubicCurveFig4(false, interpolations);
+        figureBezierCubicCurveFig4(false, BEZIER_CURVE_INTERPOLATIONS);
         components.get("cubicCurve").setDrawingPanel(getDrawingPanel());
-        if (isStandAlone) {
-            saveFigure("geom", "Bezier-CubicCurve-fig5");
-        }
+        saveFigure("geom", "Bezier-CubicCurve-fig5");
     }
 
     private void resetComponents() {

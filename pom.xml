@@ -135,6 +135,34 @@
                             </includes>
                         </configuration>
                     </plugin>
+
+                    <plugin>
+                        <groupId>com.github.github</groupId>
+                        <artifactId>site-maven-plugin</artifactId>
+                        <version>0.12</version>
+                        <configuration>
+                            <message>Updating site</message>
+                            <outputDirectory>target/apidocs</outputDirectory>
+                            <noJekyll>true</noJekyll>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>site</goal>
+                                </goals>
+                                <phase>site-deploy</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>3.9.1</version>
+                        <configuration>
+                            <skipDeploy>true</skipDeploy>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -146,6 +174,7 @@
         <scm.url>scm:git:https://github.com/gann-cdf/graphics.git</scm.url>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
+        <github.global.server>github</github.global.server>
     </properties>
 
     <distributionManagement>
