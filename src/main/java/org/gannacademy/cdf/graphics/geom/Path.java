@@ -26,7 +26,7 @@ import java.awt.geom.Path2D;
  * <p>The path above could be drawn with the following sequence of instructions:</p>
  *
  * <pre>
- *   Path p = new Path();
+ *   Path p = new Path(getDrawingPanel());
  *   p.moveTo(20, 16); // Point 1
  *   p.lineTo(40, 140); // Point 2
  *   p.curveTo(
